@@ -15,6 +15,8 @@ public class Graph
 {
     private int V;   // No. of vertices
     private LinkedList<Integer> adj[]; //Adjacency Lists
+    private String output; // The sequence of vertices in BFS
+    private List<String> tempOutput = new ArrayList<>(); // temp structure for holding vertices in order of appearance
 
     // Constructor
     public Graph(int v)
@@ -34,8 +36,25 @@ public class Graph
     // prints BFS traversal from a given source s
     public String BFS(int s)
     {
-        // TODO implement this
-        return null;
+        Queue<Integer> queue = new ArrayDeque<>();
+        Set<Integer> visited = new HashSet<>();
+        queue.offer(s);
+        Integer curr;
+
+        while ((curr = queue.poll()) != null) {
+
+            tempOutput.add(curr.toString());
+            visited.add(curr);
+
+            // add edges
+            for (int e : adj[curr]) {
+                if (!visited.contains(e)) {
+                    queue.offer(e);
+                }
+            }
+        }
+
+        return String.join(" ", tempOutput);
     }
 
 
