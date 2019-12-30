@@ -12,13 +12,13 @@ import java.io.*;
 public class Dijkstra {
 
     private int[] distances; // array that holds shortest distances
-    private List<Map<Integer, Integer>> paths; // list that holds path to each vertex
+    private Map<Integer, Integer> paths; // list that holds path to each vertex
 
     public int[] getDistances() {
         return this.distances;
     }
 
-    public List<Map<Integer, Integer>> getPaths() {
+    public Map<Integer, Integer> getPaths() {
         return this.paths;
     }
 
@@ -27,7 +27,7 @@ public class Dijkstra {
         int verticesNum = graph.length;
         int verticesVisited = 0;
         distances = new int[verticesNum];
-        paths = new ArrayList<>(verticesNum);
+        paths = new HashMap<>();
         Set<Integer> unVisited = new HashSet<>();
 
         // init distances to max
@@ -38,13 +38,13 @@ public class Dijkstra {
         // init unVisited and paths
         for (int i = 0; i < verticesNum; i++) {
             unVisited.add(i);
-            paths.add(null);
         }
 
         distances[startingVertex] = 0;
         int curr = startingVertex;
-        Map<Integer, Integer> path = new HashMap<>();
-        path.put(curr, curr);
+        List<Integer> path = new ArrayList<>();
+        //path.add(curr);
+        paths.put(curr, curr);
 
         while (unVisited.size() > 0) {
             // update distances
@@ -58,8 +58,9 @@ public class Dijkstra {
                         distances[i] = distances[curr] + distance;
 
                         // update path
-                        path.put(i, curr);
-                        paths.add(i, path);
+                        //path = new ArrayList<>(paths.get(curr));
+                        //path.add(curr);
+                        paths.put(i, curr);
                     }
                 }
             }

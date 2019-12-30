@@ -4,6 +4,11 @@ import algorithms.dijkstra.Dijkstra;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.IntStream;
+
 /**
  * Created by Michael Jeszenka.
  * <a href="mailto:michael@jeszenka.com">michael@jeszenka.com</a>
@@ -27,6 +32,24 @@ public class DijkstraTest {
         int[] distances = d.getDistances();
         int[] expected = new int[]{0, 4, 12, 19, 21, 11, 9, 8, 14};
 
+        // check distances
         Assert.assertArrayEquals(distances, expected);
+
+        // check path for vertex 4
+        List<Integer> path = new ArrayList<>();
+        Map<Integer, Integer> paths = d.getPaths();
+        int curr = 4;
+        path.add(0, curr);
+
+        while ((curr = paths.get(curr)) != 0) {
+            path.add(0, curr);
+        }
+
+        path.add(0, 0);
+
+        int[] resultPath = path.stream().flatMapToInt(s -> IntStream.of(s)).toArray();
+
+        Assert.assertArrayEquals(new int[]{0, 7, 6, 5, 4}, resultPath);
+
     }
 }
