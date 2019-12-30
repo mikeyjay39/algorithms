@@ -17,6 +17,7 @@ public class Graph {
 
     // Array  of lists for Adjacency List Representation
     private LinkedList<Integer> adj[];
+    private List<String> tempOutput = new ArrayList<>(); // holds vertices as they appear
 
     // Constructor
     public Graph(int v)
@@ -36,8 +37,26 @@ public class Graph {
     // The function to do DFS traversal. It uses recursive DFSUtil()
     public String DFS(int v)
     {
-        // TODO implement this
+        Deque<Integer> stack = new ArrayDeque<>();
+        Set<Integer> visited = new HashSet<>();
+        stack.push(v);
+        Integer curr;
 
-        return null;
+        while ((curr = stack.poll()) != null) {
+            tempOutput.add(curr.toString());
+            visited.add(curr);
+
+            // add neighbors
+            List<Integer> neighbors = adj[curr];
+            for (int i = neighbors.size() - 1; i >= 0; i--) {
+                int neighbor = neighbors.get(i);
+
+                if (!visited.contains(neighbor)) {
+                    stack.push(neighbor);
+                }
+            }
+        }
+
+        return String.join(" ", tempOutput);
     }
 }
