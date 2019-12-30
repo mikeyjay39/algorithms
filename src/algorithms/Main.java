@@ -1,4 +1,4 @@
-package geeks4geeks;
+package algorithms;
 
 public class Main {
 

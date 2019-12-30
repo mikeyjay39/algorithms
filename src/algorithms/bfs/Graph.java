@@ -1,6 +1,5 @@
-package geeks4geeks.bfs;
+package algorithms.bfs;
 
-import java.io.*;
 import java.util.*;
 
 /**

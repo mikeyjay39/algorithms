@@ -1,6 +1,6 @@
 package unittest;
 
-import geeks4geeks.bfs.Graph;
+import algorithms.bfs.Graph;
 import org.junit.Assert;
 import org.junit.Test;
 
