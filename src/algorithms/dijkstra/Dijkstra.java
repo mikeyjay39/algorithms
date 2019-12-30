@@ -12,13 +12,13 @@ import java.io.*;
 public class Dijkstra {
 
     private int[] distances; // array that holds shortest distances
-    private List<Map<Integer, Integer>> paths = new ArrayList<>(); // list that holds path to each vertex
+    private Map<Integer, Integer> paths; // list that holds path to each vertex
 
     public int[] getDistances() {
         return this.distances;
     }
 
-    public List<Map<Integer, Integer>> getPaths() {
+    public Map<Integer, Integer> getPaths() {
         return this.paths;
     }
 
